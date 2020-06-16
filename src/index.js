@@ -9,7 +9,7 @@ function component() {
 
     element.innerHTML = [
         'Hello World!',
-        'Production test!'
+        'Production test2!'
     ].join('<br><br>');
 
     return element;

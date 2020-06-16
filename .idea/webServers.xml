@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e881595f-e180-44d4-b546-263aa6a50b23" name="agarAttempt2" url="http://34.219.151.244">
+        <fileTransfer host="34.219.151.244" port="22" privateKey="$USER_HOME$/.ssh/attempt2.pem" rootFolder="/home/ubuntu/agar" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
