@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
     console.log('Looks like we are in development mode!');
 } else {
     console.log('Production is online');
+    console.log('урааааа!');
 }
 
 function component() {
@@ -99,11 +100,12 @@ function sendData(event, cell) {
 }
 
 async function httpFetch(user) {
+    // sending the location of the user cell
     let information = {};
     information['x'] = user.x;
     information['y'] = user.y;
 
-    let k = await fetch('url', {
+    let k = await fetch('/sendData', {
         method: 'Post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(information),
@@ -111,3 +113,5 @@ async function httpFetch(user) {
 
     return k.json();
 }
+
+new User(new Grid(), 'test');

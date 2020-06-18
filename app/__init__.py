@@ -6,6 +6,7 @@ import os
 
 path = os.path.dirname(os.path.abspath(__file__))
 flask_webpackext.config.WEBPACKEXT_MANIFEST_PATH = f'{path}/static/manifest.json'
+print(f'{path}/static/manifest.json')
 app = Flask(__name__, template_folder='dist')
 
 project = WebpackTemplateProject(
