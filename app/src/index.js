@@ -19,6 +19,23 @@ function component() {
 document.body.appendChild(component());
 
 // ***********************************************************************************************************
+// adding a canvas element to our html file
+function add_canvas() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'field';
+    return canvas;
+}
+
+document.body.appendChild(add_canvas());
+
+// ***********************************************************************************************************
+function setSize(g) {
+    const canvas = document.getElementById('field');
+
+    canvas.width = g.getPxWidth();
+    canvas.height = g.getPxHeight();
+    canvas.style.border = '1px solid #d3d3d3;';
+}
 
 // For now it just has the parameters for size. Later on it will also store all of locations of other users
 class Grid {
@@ -31,12 +48,12 @@ class Grid {
 
     getPxHeight() {
         // height in pixels
-        return this._height * 10;
+        return this._height * 40;
     }
 
     getPxWidth() {
         // width in pixels
-        return this._width * 10;
+        return this._width * 40;
     }
 
     getCellHeight() {
@@ -56,6 +73,7 @@ class Grid {
         this.users.push(new User(this, name))
     }
 }
+
 
 // class user: when a user logs in we its location on the grid. A location is determined by (px, px)
 class User {
@@ -96,7 +114,9 @@ function sendData(event, cell) {
         cell.x += 1;
     }
 
-    httpFetch(cell).then(data => console.log(data));
+    let d = {'None': 0};
+    httpFetch(cell).then(data => d = data);
+    displayUser(cell);
 }
 
 async function httpFetch(user) {
@@ -105,7 +125,9 @@ async function httpFetch(user) {
     information['x'] = user.x;
     information['y'] = user.y;
 
-    let k = await fetch('/sendData', {
+    console.log(information);
+
+    let k = await fetch('/agar/sendData', {
         method: 'Post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(information),
@@ -114,4 +136,15 @@ async function httpFetch(user) {
     return k.json();
 }
 
-new User(new Grid(), 'test');
+function displayUser(cell) {
+    const canvas = document.getElementById('field');
+    const ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.arc(cell.x, cell.y, 50, 0, 2 * Math.PI);
+    ctx.fill()
+}
+
+const theGrid = new Grid();
+setSize(theGrid);
+const user = new User(theGrid, 'test');

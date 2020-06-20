@@ -60,7 +60,7 @@ let start = function() {
                 ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight);
                 capYPositionArray[i] = value;
             }
-            ctx.fillStyle = gradient; //set the filllStyle to gradient for a better look
+            ctx.fillStyle = gradient; //set the fillStyle to gradient for a better look
             ctx.fillRect(i * 12 /*meterWidth+gap*/ , cheight - value + capHeight, meterWidth, cheight); //the meter
         }
         requestAnimationFrame(renderFrame);
