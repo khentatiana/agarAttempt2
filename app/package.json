@@ -27,7 +27,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "webpack-manifest-plugin": "^2.2.0"
   }
 }
